@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC 
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!--这块等于dao接口的实现  namespace必须和接口的类路径一样-->
+<mapper namespace="com.tisson.dao.inf.UserMapper">
+	<!-- findById必须和接口中的方法名一样  返回一个User  就是刚才的别名  如果不弄别名要连类路径一起写 麻烦-->
+    <select id="findByName" parameterType="HashMap" resultType="User">
+     select * from (
+		select reg_date,cust_code,verify_code 
+		from T_INF_CLNREGLOG) where rownum=1
+    </select>
+    
+    <!--配置一个resultMap 指定返回的类型 -->
+    <resultMap id="userList" type="User">
+        <id column="reg_date" property="id" />
+        <result column="cust_code" property="age" />
+        <result column="verify_code" property="name" />
+    </resultMap>
+
+    <!-- 返回一个list的写法 -->
+    <select id="findListByName"  resultMap="userList" >
+     <![CDATA[
+     select * from(
+        select to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') reg_date,cust_code,verify_code 
+		from T_INF_CLNREGLOG where cust_code=#{name} and stat='S0A' and verify_code>'0' order by reg_date desc
+		 ) where rownum<=3
+		 ]]> 
+    </select>
+        <select id="findLoginListByName"  resultMap="userList" >
+        <![CDATA[
+        select * from(
+       select to_char(VERIGENTIME,'yyyy-mm-dd hh24:mi:ss') reg_date,STAFFCODE cust_code,VERIFYCODE verify_code
+       from t_inf_loginlog where STAFFCODE=#{name} and VERIFYCODE>'0' order by VERIGENTIME desc
+       ) where rownum<=3
+        ]]> 
+    </select>
+</mapper>
