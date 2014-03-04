@@ -4,12 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.tisson.inf</groupId>
 	<artifactId>inf-service</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>inf-service Maven app</name>
 	<url>http://maven.apache.org</url>
 
-	<!-- 项目属性 -->
+	<!-- 项目属属性 -->
 	<properties>
+
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<jackson.version>2.2.1</jackson.version>
 		<slf4j.version>1.7.2</slf4j.version>
@@ -25,12 +27,12 @@
 	</properties>
 
 
-	<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<!-- 设定除中央仓(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查询 -->
 	<repositories>
 		<repository>
 			<id>nexus-tisson-repos</id>
 			<name>Team Nexus Repository</name>
-			<url>http://192.168.95.202:8081/nexus/content/groups/public/</url>
+			<url>http://192.168.95.184:8081/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 
@@ -66,8 +68,6 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- hessian 可以替代Webservice， 或者说它就是一个webService的构建者，可以实现非SOAP协议的远程事务调用， 
-			对象传递和大文件传递。 -->
 		<dependency>
 			<groupId>com.caucho</groupId>
 			<artifactId>hessian</artifactId>
@@ -103,6 +103,18 @@
 			<artifactId>bestpay.encry.pintool</artifactId>
 			<version>1</version>
 		</dependency>
+		<dependency>
+			<groupId>net.netca</groupId>
+			<artifactId>secuInter</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mpi.client</groupId>
+			<artifactId>sjfpay_mpi</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+
 
 		<!-- jdbc driver -->
 		<dependency>
@@ -237,17 +249,24 @@
 		<!-- TEST end -->
 
 
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.2</version>
+			<scope>provided</scope>
+		</dependency>
+
 
 	</dependencies>
 	<build>
-		<finalName>inf-util</finalName>
+		<finalName>inf-service</finalName>
 		<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 
@@ -271,31 +290,10 @@
 				</configuration>
 			</plugin>
 
-
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.0.0.pre5</version>
-				<configuration>
-					<connectors>
-						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8080</port>
-						</connector>
-						<connector implementation="org.mortbay.jetty.ssl.SslSelectChannelConnector">
-							<port>8443</port>
-							<keystore>src/test/resources/keystore</keystore>
-							<keyPassword>inf2012</keyPassword>
-							<password>inf2012</password>
-						</connector>
-					</connectors>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.mortbay.jetty</groupId>
-						<artifactId>jetty-ssl</artifactId>
-						<version>7.0.0.pre5</version>
-					</dependency>
-				</dependencies>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0</version>
 			</plugin>
 
 		</plugins>

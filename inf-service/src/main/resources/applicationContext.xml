@@ -13,6 +13,8 @@
 			<list>
 				<value>file:${INFCONF_HOME}/profile/encryptkey.properties</value>
 				<value>file:${INFCONF_HOME}/profile/c3p0.properties</value>
+				<value>classpath:socket.properties</value>
+				<value>classpath:log4j.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -83,6 +85,7 @@
 		<property name="dataSource" ref="infDataSource"></property>
 		<property name="mapperLocations" value="classpath*:com/tisson/dao/inf/*.xml" />
 	</bean>
+	<!--将sessionFactory中配置好的 匿名实体和数据源及mapper文件 对应到basePackage下dao接口中，同时可以直接在其方法上写注解 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.tisson.dao.inf" />
 		<property name="sqlSessionFactoryBeanName" value="infSqlSessionFactory" />

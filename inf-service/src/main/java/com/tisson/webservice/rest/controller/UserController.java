@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,8 +30,6 @@ import com.tisson.webservice.rest.domain.UserDTO;
 @RequestMapping(value ={"user", "/secure/user"})
 public class UserController extends BaseController {
 
-	Logger log = LoggerFactory.getLogger(getClass());
-	
 	/**
 	 * 基于ContentNegotiationManager,根据URL的后缀渲染不同的格式
 	 * eg. /api/user/1.xml 返回xml
@@ -104,6 +100,6 @@ public class UserController extends BaseController {
     	UserDTO dto = new UserDTO();
         return new ResponseEntity<UserDTO>(dto, HttpStatus.FORBIDDEN);
     }
-	
+
 }
 

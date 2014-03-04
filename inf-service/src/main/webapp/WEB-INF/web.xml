@@ -23,14 +23,6 @@
 		<url-pattern>/inf/*</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-	    <servlet-name>accountExporter</servlet-name>
-	    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>accountExporter</servlet-name>
-	    <url-pattern>/remoting/AccountService</url-pattern>
-	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

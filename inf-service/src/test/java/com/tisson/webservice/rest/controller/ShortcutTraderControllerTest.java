@@ -80,7 +80,7 @@ public class ShortcutTraderControllerTest {
 		
 		users.add(e10);
 		users.add(e1);
-		stReq.setUsers(users);
+//		stReq.setUsers(users);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {

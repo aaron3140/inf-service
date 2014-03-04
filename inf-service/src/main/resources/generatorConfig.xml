@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+<!-- eclipse插件安装地址：http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/eclipse/UpdateSite/
+来自：http://www.cnblogs.com/zengsong-restService/p/3248245.html -->
+<classPathEntry location="g:\repository\repository\com\oracle\ojdbc14\10.2.0.4.0\ojdbc14-10.2.0.4.0.jar"/>
+  <context id="contextBIS">
+  <commentGenerator>
+    	<property name="suppressAllComments" value="false"/>
+    	<property name="" value=""/>
+    </commentGenerator>
+    
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@192.168.87.4:1521:vmdb"  userId="BPPF_BIS" password="BIS2012" />
+    
+    
+    <!-- generate Model -->
+    <javaModelGenerator targetPackage="com.tisson.entity.bis" targetProject="inf-service/src/main/java" >
+    	<property name="enableSubPackages" value="true"/>
+		<property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    
+    <!--generatedao-->
+    <sqlMapGenerator targetPackage="com.tisson.dao.bis" targetProject="inf-service/src/main/resources"  >
+    	<property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+    
+    
+    
+    <!-- generate Mapper -->
+    <javaClientGenerator targetPackage="com.tisson.dao.bis" targetProject="inf-service/src/main/java" implementationPackage="inf-service/src/main/resources" type="XMLMAPPER" >
+    	<property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    
+    <table schema="" tableName="t_cum_info" domainObjectName="CumInfo" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" >
+    </table>
+    
+    <table schema="" tableName="t_cum_acct" domainObjectName="CumAcct" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" >
+    </table>
+    
+    
+    <table schema="" tableName="t_cum_obj" domainObjectName="CumObj" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" >
+    </table>
+    
+    <table schema="" tableName="T_CUM_ATTR" domainObjectName="CumAttr" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" >
+    </table>
+
+    
+    <table schema="" tableName="t_cum_regbindcard" domainObjectName="RegbindCard" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" >
+    </table>
+    
+    <table schema="" tableName="t_sym_error" domainObjectName="SymError"   >
+    </table>
+
+  </context>
+</generatorConfiguration>

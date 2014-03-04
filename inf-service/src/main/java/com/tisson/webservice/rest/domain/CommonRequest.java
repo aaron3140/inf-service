@@ -12,6 +12,7 @@ public abstract class CommonRequest {
 	
 	protected String svcCode;
 	
+	@NotEmpty
 	protected String merId;
 
 	protected String channelCode;
@@ -25,8 +26,37 @@ public abstract class CommonRequest {
 	protected String cer;
 
 	private String keep;
-
 	
+	private String custCode;
+
+	private String staffCode;
+	
+	private String ip;
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getCustCode() {
+		return custCode;
+	}
+
+	public void setCustCode(String custCode) {
+		this.custCode = custCode;
+	}
+
+	public String getStaffCode() {
+		return staffCode;
+	}
+
+	public void setStaffCode(String staffCode) {
+		this.staffCode = staffCode;
+	}
+
 	public String getCer() {
 		return cer;
 	}

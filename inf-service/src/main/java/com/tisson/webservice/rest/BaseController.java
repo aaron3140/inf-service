@@ -11,13 +11,19 @@ import javax.validation.Validator;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tisson.common.beanvalidator.BeanValidators;
+import com.tisson.common.utils.exception.InfError;
+import com.tisson.webservice.rest.domain.CommonResponse;
 
 /**
  * 控制器支持类
@@ -26,6 +32,7 @@ import com.tisson.common.beanvalidator.BeanValidators;
  */
 public abstract class BaseController {
 	
+	Logger log = LoggerFactory.getLogger(getClass());
 	
 	/**
 	 * http://johnnyhg.iteye.com/blog/225370
@@ -45,6 +52,19 @@ public abstract class BaseController {
        }  
        return ip;  
   }  
+    
+    
+	protected void validateFiledErrors(BindingResult results,
+			CommonResponse response) {
+		StringBuilder sb = new StringBuilder();
+		List<FieldError> errors = results.getFieldErrors();
+		for (FieldError error : errors) {
+			sb.append(error.getField()).append(":")
+					.append(error.getDefaultMessage());
+		}
+		response.setCode(InfError.FiledInvalid.getCode());
+		response.setContent(sb.toString());
+	}
 	
 	/**
 	 * 验证Bean实例对象
